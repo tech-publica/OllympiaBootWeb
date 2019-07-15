@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Reservation List</title>
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h2>Olympia Sport Club Manager</h2>
+		</div>
+	</div>
+
+	<div id="container">
+
+		<div id="content">
+
+			<button onclick="window.location.href='showFormToAdd'"
+				class="add-button">Add a Reservation</button>
+
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Client</th>
+					<th>Court</th>
+					<th>Cost</th>
+					<th></th>
+				</tr>
+				<tr th:each="res : ${reservations}">
+					<td th:text="${res.id}" />
+					<td th:text="${res.start}" />
+					<td th:text="${res.end}" />
+					<td th:text="${res.client.name}" />
+					<td th:text="${res.court.name}" />
+					<td th:text="${res.cost}" />
+					<td><a
+						th:href="@{/reservation/showFormToUpdate(id=${res.id})}">Update</a></td>
+					<td><a th:href="@{/reservation/delete(id=${res.id})}">Delete</a></td>
+
+				</tr>
+
+			</table>
+		</div>
+
+	</div>
+</body>
+</html>
